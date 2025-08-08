@@ -61,12 +61,11 @@ searchInput.addEventListener("keydown", async (event) => {
     const searchString = searchInput.value;
     loadingSpinner.style.display = "flex";
     loadingSpinner.style.visibility = "visible";
+    cardContainer.innerHTML = "";
 
     const movieIds = await MovieService.SearchMovies(searchString);
 
     const movies = await MovieService.GetMoviesByIds(movieIds);
-
-    cardContainer.innerHTML = "";
 
     for (let index = 0; index < movies.length; index++) {
       const movie = movies[index];
