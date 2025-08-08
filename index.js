@@ -109,9 +109,9 @@ searchInput.addEventListener("keydown", async (event) => {
         overlay.appendChild(div);
       }
 
-      let imdbRating = ((movie.Ratings || [])?.find(
+      let imdbRating = (movie.Ratings || [])?.find(
         (r) => r.Source === "Internet Movie Database"
-      )).Value;
+      )?.Value;
 
       if (imdbRating) {
         let div = document.createElement("div");
