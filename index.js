@@ -83,7 +83,7 @@ searchInput.addEventListener("keydown", async (event) => {
 
       if (movie.Title) {
         let div = document.createElement("div");
-        div.classList.add("flex-center", "overlay-heading");
+        div.classList.add("flex-center", "card-overlay-heading");
 
         let h2 = document.createElement("h2");
         h2.innerHTML = movie.Title;
