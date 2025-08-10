@@ -154,14 +154,18 @@ body{
     flex-wrap: wrap;
  }
 
- .loading-overlay{
+.main-container{
+    padding-top: 30px;
+}
+
+.loading-overlay{
     position: fixed;
     height: 70vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
- }
+}
 
 #loading{
     display: none;
