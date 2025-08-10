@@ -37,7 +37,7 @@ const MovieService = {
   async GetMoviesByIds(ids) {
     if (ids?.length) {
       let moviesResult = await Promise.allSettled(
-        ids.map((id) => MovieService.GetMovieById(id))
+        ids.map(async (id) => await MovieService.GetMovieById(id))
       );
 
       console.warn(moviesResult);
@@ -75,6 +75,9 @@ searchInput.addEventListener("keydown", async (event) => {
 
       let img = document.createElement("img");
       img.src = movie.Poster || "";
+      img.onerror = () => {
+        img.src = "./assets/thumbnail.svg";
+      };
       img.classList.add("card-img");
       card.appendChild(img);
 
