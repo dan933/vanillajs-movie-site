@@ -50,20 +50,12 @@ const MovieService = {
     }
     return [];
   },
-};
-
-const cardContainer = document.getElementById("card-grid-container");
-const searchInput = document.getElementById("search");
-const loadingSpinner = document.getElementById("loading");
-
-searchInput.addEventListener("keydown", async (event) => {
-  if (event.key === "Enter") {
-    const searchString = searchInput.value;
+  async RenderMovies(searchParam) {
     loadingSpinner.style.display = "flex";
     loadingSpinner.style.visibility = "visible";
     cardContainer.innerHTML = "";
 
-    const movieIds = await MovieService.SearchMovies(searchString);
+    const movieIds = await MovieService.SearchMovies(searchParam);
 
     const movies = await MovieService.GetMoviesByIds(movieIds);
 
@@ -152,5 +144,20 @@ searchInput.addEventListener("keydown", async (event) => {
 
     loadingSpinner.style.display = "none";
     loadingSpinner.style.visibility = "hidden";
+  },
+};
+
+const cardContainer = document.getElementById("card-grid-container");
+const searchInput = document.getElementById("search");
+const loadingSpinner = document.getElementById("loading");
+
+window.onload = async function () {
+  await MovieService.RenderMovies("Batman");
+};
+
+searchInput.addEventListener("keydown", async (event) => {
+  if (event.key === "Enter") {
+    const searchString = searchInput.value;
+    await MovieService.RenderMovies(searchString);
   }
 });
