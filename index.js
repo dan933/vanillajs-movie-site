@@ -12,13 +12,13 @@ const MovieService = {
     const resp = await fetch(url)
       .then((res) => res.json())
       .catch((err) => {
-        alert(err?.message || "Error Fetching Response");
+        console.warn("err", err);
       });
 
     // console.warn("resp", resp);
 
     if (resp?.Error) {
-      alert(resp?.Error);
+      console.warn(resp?.Error);
     }
 
     const movieIds = (resp?.Search || [])
@@ -53,11 +53,18 @@ const MovieService = {
   async RenderMovies(searchParam) {
     loadingSpinner.style.display = "flex";
     loadingSpinner.style.visibility = "visible";
+    noResults.style.display = "none";
     cardContainer.innerHTML = "";
 
     const movieIds = await MovieService.SearchMovies(searchParam);
 
     const movies = await MovieService.GetMoviesByIds(movieIds);
+
+    if (!movies?.length) {
+      noResults.style.display = "flex";
+    } else {
+      noResults.style.display = "none";
+    }
 
     for (let index = 0; index < movies.length; index++) {
       const movie = movies[index];
@@ -150,6 +157,7 @@ const MovieService = {
 const cardContainer = document.getElementById("card-grid-container");
 const searchInput = document.getElementById("search");
 const loadingSpinner = document.getElementById("loading");
+const noResults = document.getElementById("no-results-container");
 
 window.onload = async function () {
   await MovieService.RenderMovies("Batman");

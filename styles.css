@@ -158,6 +158,28 @@ body{
     padding-top: 30px;
 }
 
+#no-results-container{
+    position: fixed;
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .no-results-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+} */
+
+.no-results-header{
+    color: white;
+}
+
 .loading-overlay{
     position: fixed;
     height: 70vh;
