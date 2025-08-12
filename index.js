@@ -149,23 +149,19 @@ const MovieService = {
 
       const cardAction = document.createElement("div");
       cardAction.classList.add("card-action");
-      cardAction.classList.add("flex-center", "flex-column");
 
-      // const cardMoreDetailsButton = document.createElement("button");
-      // cardMoreDetailsButton.classList.add("card-btn-more-details");
-      // cardMoreDetailsButton.href = "https://www.google.com";
-      //
-      // card.appendChild(cardMoreDetailsButton);
+      const cardMoreDetailsButton = document.createElement("button");
+      cardMoreDetailsButton.classList.add("card-btn-more-details");
+      cardMoreDetailsButton.onclick = () => {
+        console.log("clicked");
+      };
+      cardMoreDetailsButton.innerHTML = "More Details";
 
-      //wip
-      // element.style {
-      //   position: absolute;
-      //   bottom: 0;
-      //   width: 100%;
-      //   height: 20%;
-      //   display: flex;
-      //   justify-content: center;
-      // }
+      cardMoreDetailsButton.classList.add("card-btn-more-details");
+
+      cardAction.appendChild(cardMoreDetailsButton);
+
+      card.appendChild(cardAction);
 
       cardContainer.appendChild(card);
     }
