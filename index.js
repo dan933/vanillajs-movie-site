@@ -78,6 +78,7 @@ const MovieService = {
         img.src = "./assets/thumbnail.svg";
       };
       img.classList.add("card-img");
+      img.alt = "Poster";
       card.appendChild(img);
 
       let overlay = document.createElement("div");
@@ -145,6 +146,26 @@ const MovieService = {
       }
 
       card.appendChild(overlay);
+
+      const cardAction = document.createElement("div");
+      cardAction.classList.add("card-action");
+      cardAction.classList.add("flex-center", "flex-column");
+
+      // const cardMoreDetailsButton = document.createElement("button");
+      // cardMoreDetailsButton.classList.add("card-btn-more-details");
+      // cardMoreDetailsButton.href = "https://www.google.com";
+      //
+      // card.appendChild(cardMoreDetailsButton);
+
+      //wip
+      // element.style {
+      //   position: absolute;
+      //   bottom: 0;
+      //   width: 100%;
+      //   height: 20%;
+      //   display: flex;
+      //   justify-content: center;
+      // }
 
       cardContainer.appendChild(card);
     }
