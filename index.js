@@ -150,18 +150,23 @@ const MovieService = {
       const cardAction = document.createElement("div");
       cardAction.classList.add("card-action");
 
-      const cardMoreDetailsButton = document.createElement("button");
-      cardMoreDetailsButton.classList.add("card-btn-more-details");
-      cardMoreDetailsButton.onclick = () => {
-        console.log("clicked");
-      };
-      cardMoreDetailsButton.innerHTML = "More Details";
+      if (movie?.imdbID) {
+        const cardMoreDetailsButton = document.createElement("a");
+        cardMoreDetailsButton.classList.add("card-btn-more-details");
+        console.log("window.location.href", window.location.href);
+        let url = new URL(`${window.location.href}movie-details/index.html`);
+        const params = url.searchParams;
+        params.set("movieId", `${movie?.imdbID}`);
+        console.log("url.toString();", url.toString());
+        cardMoreDetailsButton.href = url.toString();
+        cardMoreDetailsButton.innerHTML = "More Details";
 
-      cardMoreDetailsButton.classList.add("card-btn-more-details");
+        cardMoreDetailsButton.classList.add("card-btn-more-details");
 
-      cardAction.appendChild(cardMoreDetailsButton);
+        cardAction.appendChild(cardMoreDetailsButton);
 
-      card.appendChild(cardAction);
+        card.appendChild(cardAction);
+      }
 
       cardContainer.appendChild(card);
     }

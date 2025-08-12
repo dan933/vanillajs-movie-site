@@ -136,6 +136,12 @@ body{
     background: rgba(0, 0, 0, 0.5);
 }
 
+.card-overlay:focus{
+    visibility: visible;
+    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.5);
+}
+
 .card-action{
     position: absolute;
     bottom: 0;
@@ -156,6 +162,12 @@ body{
     background-color: #3e1bbd;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    padding: 2px 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .card-btn-more-details:active{
