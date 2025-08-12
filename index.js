@@ -154,7 +154,7 @@ const MovieService = {
         const cardMoreDetailsButton = document.createElement("a");
         cardMoreDetailsButton.classList.add("card-btn-more-details");
         console.log("window.location.href", window.location.href);
-        let url = new URL(`${window.location.href}movie-details/index.html`);
+        let url = new URL(`${window.location.href}movie-details/`);
         const params = url.searchParams;
         params.set("movieId", `${movie?.imdbID}`);
         console.log("url.toString();", url.toString());
