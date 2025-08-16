@@ -3,6 +3,37 @@ const BASE_URL = "https://www.omdbapi.com";
 
 // https://omdbapi.com/?t=batman&type=movie&apikey=9af828b4
 
+export const Utils = {
+  /**
+   *
+   * @param {keyof HTMLElementTagNameMap} elementName
+   * @param {string[]} classes
+   * @param {string} innerHtml
+   * @param {string} id
+   * @returns {HTMLElement}
+   */
+  createElement(elementName, classes, innerHtml, id) {
+    let element = document.createElement(elementName);
+
+    if (classes?.length) {
+      for (let index = 0; index < classes.length; index++) {
+        const classItem = classes[index];
+        element.classList.add(classItem);
+      }
+    }
+
+    if (id) {
+      element.id = id;
+    }
+
+    if (innerHtml) {
+      element.innerHTML = innerHtml;
+    }
+
+    return element;
+  },
+};
+
 export const MovieService = {
   async SearchMovies(searchParam) {
     const url = `${BASE_URL}/?s=${searchParam}&plot=full&page=1&type=movie&apikey=${APIKEY}`;
@@ -154,11 +185,19 @@ async function RenderMovies(searchParam) {
       const cardMoreDetailsButton = document.createElement("a");
       cardMoreDetailsButton.classList.add("card-btn-more-details");
 
-      let url = new URL(`${window.location.href}movie-details/`);
+      let url = new URL(`${window.location.origin}/movie-details/`);
       const params = url.searchParams;
       params.set("movieId", `${movie?.imdbID}`);
+      params.set("search", `${searchParam}`);
+
+      // cardMoreDetailsButton.onclick = () => {
+      //   history.pushState({}, "", url)
+      // };
+
+      console.log("window.location.href", window.location.href);
 
       cardMoreDetailsButton.href = url.toString();
+      // cardMoreDetailsButton.href = "#";
       cardMoreDetailsButton.innerHTML = "More Details";
 
       cardMoreDetailsButton.classList.add("card-btn-more-details");
@@ -181,7 +220,11 @@ const loadingSpinner = document.getElementById("loading");
 const noResults = document.getElementById("no-results-container");
 
 window.onload = async function () {
-  await RenderMovies("Batman");
+  let url = new URL(`${window.location.href}`);
+  let params = url.searchParams;
+  let searchPrams = params.get("search");
+
+  await RenderMovies(searchPrams || "Batman");
 
   searchInput.addEventListener("keydown", async (event) => {
     if (event.key === "Enter") {
