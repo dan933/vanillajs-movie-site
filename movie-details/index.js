@@ -149,7 +149,7 @@ const MovieDetailsService = {
 
       actionContainer.appendChild(backButton);
 
-      if (searchParam) {
+      if (searchParam || movie?.Title) {
         let trailerButton = Utils.createElement(
           "button",
           [],
@@ -157,11 +157,10 @@ const MovieDetailsService = {
           "btn-trailer"
         );
 
-        // https://www.youtube.com/results?search_query=batman+begins+trailer
         let youtubeUrl = new URL("https://www.youtube.com/results");
         let params = youtubeUrl.searchParams;
 
-        params.set("search_query", searchParam);
+        params.set("search_query", movie?.Title || searchParam);
 
         trailerButton.onclick = () => {
           window.open(`${youtubeUrl.toString()}+trailer`, "_blank");
